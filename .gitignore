@@ -1,0 +1,9 @@
+# Remove virtualenv folder
+venv/
+
+# Remove IDE files
+.idea
+
+# Remove cache
+__pycache__/
+.pytest_cache/
