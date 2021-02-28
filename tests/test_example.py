@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from file_converter.file_converter import FileConverter
 
 
