@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from file_converter.types.column_types import ACCEPTED_TYPES
+from file_converter.column_types import ACCEPTED_TYPES
 
 
 class MetadataReader:
