@@ -1,0 +1,6 @@
+repos:
+-   repo: https://gitlab.com/pycqa/flake8
+    rev: '6de8252c035844f1e679f509b5f37340b44d5c39'
+    hooks:
+    -   id: flake8
+        exclude: ^venv/
