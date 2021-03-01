@@ -17,6 +17,12 @@ class FileConverter:
 
     @staticmethod
     def convert_value(data_value, column_type):
+        """
+        Verify and convert a value according to its type
+        :param data_value: value as a string
+        :param column_type: value type
+        :return: converted value as string
+        """
         value_formatter = ValueFormatter.factory(column_type)
         if value_formatter.validate_format(data_value):
             return value_formatter.convert(data_value)
@@ -24,6 +30,9 @@ class FileConverter:
             raise Exception("Value does not respect format : {} with type {}".format(data_value, column_type))
 
     def convert_line(self, data_line):
+        """
+        Convert a line according to metadata
+        """
         # Verify line length
         data_line = data_line.rstrip()
         if len(data_line) > sum([column["size"] for column in self.metadata]):
@@ -43,15 +52,26 @@ class FileConverter:
         return self.sep.join(converted_values)
 
     def get_header(self):
+        """
+        Return metadata as a csv header
+        """
         return self.sep.join([col["name"] for col in self.metadata])
 
     def convert_data_generator(self, data_iterator):
+        """
+        Return a generator to convert data line by line
+        :param data_iterator: data to convert
+        :return: generator of converted data
+        """
         return (
             self.convert_line(data_line)
             for data_line in data_iterator
         )
 
     def convert_file_and_write_to_csv(self, input_file, output_file):
+        """
+        Read an input file, convert it to csv and write it to output file
+        """
         if not os.path.isfile(input_file):
             raise Exception("Input data file does not exists")
         out_path, out_filename = os.path.split(output_file)
