@@ -1,3 +1,5 @@
+import re
+
 from file_converter.column_types import DATE_TYPE, NUMERIC_TYPE, STRING_TYPE
 
 
@@ -26,8 +28,8 @@ class ValueFormatter:
 class DateFormatter(ValueFormatter):
     @staticmethod
     def validate_format(data_value):
-        # TODO
-        return True
+        regex = re.compile(r'[0-9]{4}-[0-9]{2}-[0-9]{2}')
+        return re.fullmatch(regex, data_value.strip())
 
     @staticmethod
     def convert(data_value):
@@ -37,8 +39,8 @@ class DateFormatter(ValueFormatter):
 class NumericFormatter(ValueFormatter):
     @staticmethod
     def validate_format(data_value):
-        # TODO
-        return True
+        regex = re.compile(r'[-+]?\d*\.\d+|\d+')
+        return re.fullmatch(regex, data_value.strip())
 
     @staticmethod
     def convert(data_value):
@@ -48,9 +50,11 @@ class NumericFormatter(ValueFormatter):
 class StringFormatter(ValueFormatter):
     @staticmethod
     def validate_format(data_value):
-        # TODO
         return True
 
     @staticmethod
     def convert(data_value):
-        return data_value.strip()
+        if ',' in data_value:
+            return '"{}"'.format(data_value.strip())
+        else:
+            return data_value.strip()
