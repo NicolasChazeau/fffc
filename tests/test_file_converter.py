@@ -56,3 +56,32 @@ def test_file_converter_01():
     assert my_file_converter.get_header() == expected_result[0]
     converted_data = list(my_file_converter.convert_data_generator(input_data))
     assert converted_data == expected_result[1:]
+
+
+def test_convert_and_write_csv_01():
+    input_data_file = "./tests/input/test_convert_and_write_input_data.txt"
+    output_file = "./tests/output/test_convert_and_write_output_data.csv"
+    my_file_converter = FileConverter(INPUT_METADATA)
+    my_file_converter.convert_file_and_write_to_csv(input_data_file, output_file)
+    of1 = open(output_file)
+    of2 = open("./tests/input/test_convert_and_write_expected_result.csv")
+    for line1, line2 in zip(of1, of2):
+        assert line1 == line2
+    of1.close()
+    of2.close()
+
+
+def test_convert_and_write_csv_02():
+    input_data_file = "./tests/input/test_convert_and_write_input_data.txt"
+    output_file = "./tests/output/test_convert_and_write_output_data.txt"
+    my_file_converter = FileConverter(INPUT_METADATA)
+    with pytest.raises(Exception):
+        my_file_converter.convert_file_and_write_to_csv(input_data_file, output_file)
+
+
+def test_convert_and_write_csv_03():
+    input_data_file = "UNKNOW_PATH"
+    output_file = "./tests/output/test_convert_and_write_output_data.csv"
+    my_file_converter = FileConverter(INPUT_METADATA)
+    with pytest.raises(Exception):
+        my_file_converter.convert_file_and_write_to_csv(input_data_file, output_file)

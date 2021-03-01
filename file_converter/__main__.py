@@ -10,14 +10,14 @@ def parse_arguments():
     parser.add_argument("--input_metadata_file", required=True, type=str, help='Input metadata file in csv format')
     parser.add_argument("--output_file", required=True, type=str, help='Output file in csv format')
 
-    args = parser.parse_args()
-    return args
+    arguments = parser.parse_args()
+    return arguments
 
 
 def run(input_data_file, input_metadata_file, output_file):
     metadata_list = MetadataReader.read_metadata_file(input_metadata_file)
     file_converter = FileConverter(metadata_list)
-    file_converter.convert_file_and_write(input_data_file, output_file)
+    file_converter.convert_file_and_write_to_csv(input_data_file, output_file)
 
 
 if __name__ == "__main__":
