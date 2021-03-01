@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from file_converter.column_types import DATE_TYPE, NUMERIC_TYPE, STRING_TYPE
+from file_converter.value_formatter import ValueFormatter
 
 
 class FileConverter:
@@ -13,13 +13,11 @@ class FileConverter:
 
     @staticmethod
     def convert_value(data_value, column_type):
-        if column_type == DATE_TYPE:
-            # TODO : add control on date with bad format
-            return "/".join(reversed(data_value.strip().split("-")))
-        elif column_type == NUMERIC_TYPE:
-            return data_value.strip()
-        elif column_type == STRING_TYPE:
-            return data_value.strip()
+        value_formatter = ValueFormatter.factory(column_type)
+        if value_formatter.validate_format(data_value):
+            return value_formatter.convert(data_value)
+        else:
+            raise Exception("Value does not respect format : {} with type {}".format(data_value, column_type))
 
     def convert_line(self, data_line):
         # Verify line length
