@@ -29,7 +29,7 @@ class MetadataReader:
         for line in metadata_iterator:
             col_metadata_list = line.strip().split(",")
             if len(col_metadata_list) != 3:
-                raise(Exception("Wrong number of column metadata for line : {}".format(line)))
+                raise(Exception("Wrong number of column metadata (3 fields expected) for line : {}".format(line)))
             col_name, col_size, col_type = col_metadata_list
             col_size = int(col_size)
             if col_type not in ACCEPTED_TYPES:

@@ -28,5 +28,9 @@ if __name__ == "__main__":
     out_file = args.output_file
 
     print("Begin")
-    run(in_data_file, in_metadata_file, out_file)
+    try:
+        run(in_data_file, in_metadata_file, out_file)
+    except Exception as e:
+        print("ERROR while converting :")
+        print(e)
     print("End")
