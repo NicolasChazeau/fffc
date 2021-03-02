@@ -78,7 +78,7 @@ class FileConverter:
         if not os.path.exists(out_path):
             raise Exception("Output path does not exists")
         if not os.path.splitext(out_filename)[-1] == ".csv":
-            raise Exception("Bad file extension, .csv expected")
+            raise Exception("Bad file extension for output file, .csv expected")
         with open(output_file, "w", encoding=self.encoding, newline=self.line_sep) as output:
             output.write(self.get_header() + "\n")
             with open(input_file, "r", encoding=self.encoding) as input_f:

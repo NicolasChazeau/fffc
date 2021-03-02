@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import os
+
 from file_converter.column_types import ACCEPTED_TYPES
 
 
@@ -14,6 +16,10 @@ class MetadataReader:
         :param metadata_file: path to metadata file
         :return: list of dict (columns metadata)
         """
+        if not os.path.isfile(metadata_file):
+            raise Exception("Metadata file does not exists")
+        if not os.path.splitext(metadata_file)[-1] == ".csv":
+            raise Exception("Bad file extension for metadata file, .csv expected")
         with open(metadata_file, "r", encoding="utf8") as input_file:
             metadata = MetadataReader.parse_metadata(input_file.readlines())
         return metadata

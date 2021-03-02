@@ -2,6 +2,7 @@ from argparse import ArgumentParser
 
 from file_converter.file_converter import FileConverter
 from file_converter.metadata_reader import MetadataReader
+from file_converter.config import LINE_SEP, SEP, ENCODING
 
 
 def parse_arguments():
@@ -16,7 +17,7 @@ def parse_arguments():
 
 def run(input_data_file, input_metadata_file, output_file):
     metadata_list = MetadataReader.read_metadata_file(input_metadata_file)
-    file_converter = FileConverter(metadata_list)
+    file_converter = FileConverter(metadata_list, sep=SEP, line_sep=LINE_SEP, encoding=ENCODING)
     file_converter.convert_file_and_write_to_csv(input_data_file, output_file)
 
 

@@ -26,7 +26,8 @@ def test_date_formatter_validate_format_01():
     input_tests = [
         "2021-01",
         "01-03-2021",
-        "2021/03/01"
+        "2021/03/01",
+        "2021-0-000"
     ]
     for test in input_tests:
         assert not DateFormatter.validate_format(test)
