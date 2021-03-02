@@ -7,7 +7,10 @@ from file_converter.value_formatter import ValueFormatter
 
 class FileConverter:
     """
-    Class to convert a fixed file format to a csv file
+    Class to convert a fixed file format to a csv file according to associated metadata
+    :param metadata: list of dict with data describing each column
+                     Example :
+                     [{"size":3, "type": "numeric", "name": "height"},...]
     """
     def __init__(self, metadata, sep=",", line_sep="\r\n", encoding="utf8"):
         self.metadata = metadata

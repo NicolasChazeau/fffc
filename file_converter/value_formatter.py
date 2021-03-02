@@ -23,6 +23,7 @@ class ValueFormatter:
             return NumericFormatter
         elif data_type == STRING_TYPE:
             return StringFormatter
+        raise Exception("Data type not supported : {}".format(data_type))
 
 
 class DateFormatter(ValueFormatter):

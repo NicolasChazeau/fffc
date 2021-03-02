@@ -3,7 +3,7 @@
 ## Présentation
 
 Outil générique qui convertit un fichier d'entrée au format fixe en un fichier csv, en se basant sur un fichier de metadonnées décrivant sa structure.
-Notre fichier d'entrée peut avoir n'importe quel nombre de colonnes
+Le fichier d'entrée peut avoir n'importe quel nombre de colonnes
 Une colonne peut-être d'un de ces 3 formats:
 * date (format yyyy-mm-dd)
 * numerique (séparateur décimal '.', peut être négatif)
