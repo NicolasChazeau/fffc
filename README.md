@@ -1,12 +1,8 @@
 # Fixed File Format converter
 
-L'objectif de cet exercice est d'écrire un outil générique qui convertira un fichier d'entrée au format fixe en un fichier csv, en se basant sur un fichier de metadonnées décrivant sa structure.
+## Présentation
 
-Vous êtes libre d'utiliser n'importe quel langage ou librairie open source si vous en avez besoin.
-Créez un fork de ce projet et fournissez nous votre code complet en pull request (en incluant le code source et les tests)
-
-## Cas d'usage
-
+Outil générique qui convertit un fichier d'entrée au format fixe en un fichier csv, en se basant sur un fichier de metadonnées décrivant sa structure.
 Notre fichier d'entrée peut avoir n'importe quel nombre de colonnes
 Une colonne peut-être d'un de ces 3 formats:
 * date (format yyyy-mm-dd)
@@ -17,14 +13,6 @@ La structure du fichier est définie dans un fichier de métadonnées, au format
 * nom de la colonne
 * taille de la colonne
 * type de la colonne
-
-Vous devez transformer le fichier d'entrée en un fichier csv (séparateur ',' et séparateur de ligne CRLF)
-
-Les dates doivent être formatés en dd/mm/yyyy
-
-Les espaces en fin de chaine de caractères doivent être nettoyés (trim)
-
-La première ligne du fichier csv doit être le nom des colonnes
 
 ## Exemple
 
@@ -51,16 +39,43 @@ Birth date,First name,Last name,Weight
 28/11/1988,Bob,Big,102.4
 ```
 
-## Conditions supplémentaires
-* les fichiers sont encodés en UTF-8 et peuvent contenir des caractères spéciaux
-* les colonnes au format string peuvent contenir des séparateurs ','. Dans ce cas la chaîne de caractères complète doit être protégée par des " (double quote) 
-* dans le cas où le format de fichier n'est pas correct, le programme doit échouer en expliquant la raison
-* le fichier d'entrée peut être très volumineux (plusieurs Go)
+## Pré-requis
 
-## Que voulons nous évaluer à travers ce test ? ##
+L'outil est codé en Python (version 3.8 utilisée), il faut donc que Python soit installé sur le poste.
 
-La manière de résoudre le problème et l'utilisation des bonnes pratiques de craft et de clean code.
+## Installation
 
-## Qu'est-ce que nous n'évaluons pas ? ##
+Création d'un environnement virtuel dans le dossier du projet.
+Pour créer le venv, se mettre à la racine du projet et faire la commande :
 
-Les frameworks et technologies utilisés
+```
+python -m venv venv
+```
+
+Activer le venv
+
+```
+source venv/bin/activate
+```
+
+Installer les libs requises
+
+```
+pip install -r requirements.txt
+```
+
+## Utilisation
+
+Se mettre à la racine du projet et lancer le script comme ceci :
+
+```
+python -m file_converter --input-data-file input_data.txt --input_metadata_file input_metadata.csc --output_file output_data.csv
+```
+
+## Tests
+
+Pour lancer les tests, se mettre à la racine du projet et lancer :
+
+```
+python -m pytest tests
+```
