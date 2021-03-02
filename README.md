@@ -69,7 +69,7 @@ pip install -r requirements.txt
 Se mettre à la racine du projet et lancer le script comme ceci :
 
 ```
-python -m file_converter --input-data-file input_data.txt --input_metadata_file input_metadata.csc --output_file output_data.csv
+python -m file_converter --input_data_file ./example/input/input_data.txt --input_metadata_file ./example/input/input_metadata.csv --output_file ./example/output/output_data.csv
 ```
 
 ## Tests
