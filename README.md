@@ -72,6 +72,10 @@ Se mettre à la racine du projet et lancer le script comme ceci :
 python -m file_converter --input_data_file ./example/input/input_data.txt --input_metadata_file ./example/input/input_metadata.csv --output_file ./example/output/output_data.csv
 ```
 
+* input_data_file est le fichier à traiter
+* input_metadata_file est le fichier de métadonnées en entrée
+* output_file est le fichier dans lequel écrire le résultat
+
 ## Tests
 
 Pour lancer les tests, se mettre à la racine du projet et lancer :
